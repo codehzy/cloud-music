@@ -6,8 +6,8 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "electron": "wait-on tcp:3000 && cross-env NODE_ENV=development electron .",
-    "electron:serve": "electron .",
+    "electron": "wait-on tcp:3000 && electron .",
+    "electron:serve": "concurrently -k \"yarn dev\" \"yarn electron\"",
     "ebuild": "vite build && electron-builder"
   },
   "dependencies": {
@@ -15,12 +15,14 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",
+    "concurrently": "^6.5.1",
     "cross-env": "^7.0.3",
     "electron": "^16.0.5",
     "electron-builder": "^22.14.5",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
-    "vue-tsc": "^0.29.8"
+    "vue-tsc": "^0.29.8",
+    "wait-on": "^6.0.0"
   },
   "build": {
     "appId": "com.your-website.your-app",
