@@ -13,7 +13,14 @@ function createWindow() {
   })
 
   // 加载 index.html
-  mainWindow.loadFile('dist/index.html') // 此处跟electron官网路径不同，需要注意
+  // mainWindow.loadFile('dist/index.html') // 此处跟electron官网路径不同，需要注意
+
+  // 配置开发环境加载入口文件的地方
+  mainWindow.loadURL(
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000'
+      : `file://${path.join(__dirname, '../dist/index.html')}`
+  )
 
   // 打开开发工具
   mainWindow.webContents.openDevTools()
